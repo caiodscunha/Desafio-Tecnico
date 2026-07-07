@@ -20,6 +20,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // o ASP.NET Core vai entregar uma instância de PessoaService.
 builder.Services.AddScoped<IPessoaService, PessoaService>();
 
+// Mesma ideia para o serviço de Transação.
+builder.Services.AddScoped<ITransacaoService, TransacaoService>();
+
 // Swagger/OpenAPI: gera uma página interativa (/swagger) para testar a API pelo navegador.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

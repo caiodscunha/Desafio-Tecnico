@@ -6,9 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace DesafioTecnico.Api.Services;
 
 /// <summary>
-/// Implementação das regras de negócio de Pessoa.
-/// Por enquanto contém apenas criar e listar (exemplo-base); exclusão em cascata e as demais
-/// regras do desafio (transações, totais) serão adicionadas nas próximas etapas.
+/// Implementação das regras de negócio de Pessoa: criar, listar e deletar.
 /// </summary>
 public class PessoaService : IPessoaService
 {
@@ -50,5 +48,19 @@ public class PessoaService : IPessoaService
                 Idade = p.Idade
             })
             .ToListAsync();
+    }
+
+    public async Task DeletarAsync(Guid id)
+    {
+        var pessoa = await _context.Pessoas.FindAsync(id);
+        if (pessoa is null)
+        {
+            throw new KeyNotFoundException("Pessoa não encontrada.");
+        }
+
+        // A exclusão em cascata configurada em AppDbContext.OnModelCreating garante que
+        // todas as transações dessa pessoa sejam apagadas automaticamente junto.
+        _context.Pessoas.Remove(pessoa);
+        await _context.SaveChangesAsync();
     }
 }

@@ -45,4 +45,22 @@ public class PessoasController : ControllerBase
         var pessoas = await _pessoaService.ListarAsync();
         return Ok(pessoas);
     }
+
+    /// <summary>
+    /// DELETE /api/pessoas/{id}
+    /// Remove uma pessoa e, em cascata, todas as transações associadas a ela.
+    /// </summary>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Deletar(Guid id)
+    {
+        try
+        {
+            await _pessoaService.DeletarAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+    }
 }

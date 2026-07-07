@@ -11,4 +11,5 @@ public interface IPessoaService
 {
     Task<PessoaResponseDto> CriarAsync(CreatePessoaDto dto);
     Task<IEnumerable<PessoaResponseDto>> ListarAsync();
+    Task DeletarAsync(Guid id);
 }

@@ -23,6 +23,9 @@ builder.Services.AddScoped<IPessoaService, PessoaService>();
 // Mesma ideia para o serviço de Transação.
 builder.Services.AddScoped<ITransacaoService, TransacaoService>();
 
+// Mesma ideia para o serviço de Totais.
+builder.Services.AddScoped<ITotaisService, TotaisService>();
+
 // Swagger/OpenAPI: gera uma página interativa (/swagger) para testar a API pelo navegador.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

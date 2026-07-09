@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SubmitEvent } from "react";
 import "./PessoasPage.css";
 import type { Pessoa } from "../types/Pessoa";
 import { criarPessoa, deletarPessoa, listarPessoas } from "../api/pessoasApi";
-
-// As funções de api/*.ts sempre lançam um Error com a mensagem vinda do back-end
-// (ver extrairMensagemDeErro em api/httpError.ts). Aqui só extraímos essa mensagem,
-// com um texto genérico de reserva caso o erro não seja o esperado.
-function mensagemDoErro(erro: unknown, fallback: string): string {
-  return erro instanceof Error ? erro.message : fallback;
-}
+import { mensagemDoErro } from "../utils/mensagemDoErro";
 
 export function PessoasPage() {
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
@@ -40,7 +34,7 @@ export function PessoasPage() {
     })();
   }, []);
 
-  async function handleCriar(event: React.FormEvent) {
+  async function handleCriar(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     setErro(null);
 

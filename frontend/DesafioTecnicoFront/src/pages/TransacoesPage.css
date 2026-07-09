@@ -1,0 +1,49 @@
+.transacoes-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.transacoes-form input {
+  flex: 1;
+  min-width: 140px;
+}
+
+.transacoes-erro {
+  color: var(--danger);
+  margin-bottom: 16px;
+}
+
+.transacoes-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transacoes-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.transacoes-vazio {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.valor-receita {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.valor-despesa {
+  color: var(--danger);
+  font-weight: 600;
+}

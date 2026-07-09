@@ -2,9 +2,6 @@ import { API_BASE_URL } from "./config";
 import { extrairMensagemDeErro } from "./httpError";
 import type { CreatePessoaInput, Pessoa } from "../types/Pessoa";
 
-// fetch é a função nativa do navegador pra fazer requisições HTTP — não precisa instalar
-// nenhuma biblioteca extra (tipo axios) pra chamadas simples como essas.
-
 export async function listarPessoas(): Promise<Pessoa[]> {
   const response = await fetch(`${API_BASE_URL}/pessoas`);
 

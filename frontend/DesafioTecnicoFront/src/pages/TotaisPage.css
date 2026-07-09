@@ -1,0 +1,42 @@
+.totais-erro {
+  color: var(--danger);
+  margin-bottom: 16px;
+}
+
+.totais-vazio {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.totais-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.totais-tabela th,
+.totais-tabela td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.totais-tabela thead th {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.totais-tabela tfoot td {
+  font-weight: 700;
+  border-top: 2px solid var(--border);
+  border-bottom: none;
+}
+
+.totais-saldo-positivo {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.totais-saldo-negativo {
+  color: var(--danger);
+  font-weight: 600;
+}

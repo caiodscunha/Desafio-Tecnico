@@ -5,6 +5,7 @@ import type { Transacao, TipoTransacao } from "../types/Transacao";
 import { listarPessoas } from "../api/pessoasApi";
 import { criarTransacao, listarTransacoes } from "../api/transacoesApi";
 import { mensagemDoErro } from "../utils/mensagemDoErro";
+import { converterValorParaNumero } from "../utils/converterValorParaNumero";
 
 export function TransacoesPage() {
   const [transacoes, setTransacoes] = useState<Transacao[]>([]);
@@ -50,8 +51,14 @@ export function TransacoesPage() {
     event.preventDefault();
     setErro(null);
 
+    const valorNumerico = converterValorParaNumero(valor);
+    if (Number.isNaN(valorNumerico)) {
+      setErro("Informe um valor válido (ex: 150,50).");
+      return;
+    }
+
     try {
-      await criarTransacao({ tipo, descricao, valor: Number(valor), pessoaId });
+      await criarTransacao({ tipo, descricao, valor: valorNumerico, pessoaId });
       setDescricao("");
       setValor("");
       await carregarDados();
@@ -98,9 +105,9 @@ export function TransacoesPage() {
         />
 
         <input
-          type="number"
-          step="0.01"
-          placeholder="Valor"
+          type="text"
+          inputMode="decimal"
+          placeholder="Valor (ex: 150,50)"
           value={valor}
           onChange={(e) => setValor(e.target.value)}
           required

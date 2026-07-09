@@ -19,8 +19,8 @@ public class CreateTransacaoDto
     public string Descricao { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "O valor é obrigatório.")]
-    [Range(0, float.MaxValue, ErrorMessage = "O valor deve ser um número positivo.")]
-    public float Valor { get; set; }
+    [Range(0, double.MaxValue, ErrorMessage = "O valor deve ser um número positivo.")]
+    public decimal Valor { get; set; }
 
     [Required(ErrorMessage = "O ID da pessoa é obrigatório.")]
     public Guid PessoaId { get; set; }

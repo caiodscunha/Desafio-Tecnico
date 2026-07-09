@@ -15,7 +15,7 @@ public class Transacao
 
     public string Descricao { get; set; } = string.Empty;
 
-    public float Valor { get; set; }
+    public decimal Valor { get; set; }
 
     /// <summary>
     /// Chave estrangeira: valor real gravado no banco, apontando pra Pessoa dona da transação.

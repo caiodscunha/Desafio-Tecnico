@@ -8,7 +8,7 @@ public class TotalPessoaDto
 {
     public Guid PessoaId { get; set; }
     public string Nome { get; set; } = string.Empty;
-    public float TotalReceitas { get; set; }
-    public float TotalDespesas { get; set; }
-    public float Saldo { get; set; }
+    public decimal TotalReceitas { get; set; }
+    public decimal TotalDespesas { get; set; }
+    public decimal Saldo { get; set; }
 }

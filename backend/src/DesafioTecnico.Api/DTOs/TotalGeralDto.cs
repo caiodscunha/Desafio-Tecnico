@@ -6,7 +6,7 @@ namespace DesafioTecnico.Api.DTOs;
 /// </summary>
 public class TotalGeralDto
 {
-    public float TotalReceitas { get; set; }
-    public float TotalDespesas { get; set; }
-    public float SaldoLiquido { get; set; }
+    public decimal TotalReceitas { get; set; }
+    public decimal TotalDespesas { get; set; }
+    public decimal SaldoLiquido { get; set; }
 }

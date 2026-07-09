@@ -1,0 +1,100 @@
+:root {
+  --text: #4b4b55;
+  --text-h: #17161d;
+  --bg: #ffffff;
+  --bg-alt: #f7f7f9;
+  --border: #e2e1e6;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --danger: #dc2626;
+
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+
+  font: 16px/1.5 var(--sans);
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #c3c2c9;
+    --text-h: #f3f2f6;
+    --bg: #17161d;
+    --bg-alt: #1f1e26;
+    --border: #302f38;
+    --accent: #a78bfa;
+    --accent-hover: #c4b5fd;
+    --danger: #f87171;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  color: var(--text-h);
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+p {
+  margin: 0;
+}
+
+input,
+select {
+  font: inherit;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button {
+  font: inherit;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+button.secundario {
+  color: var(--danger);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+button.secundario:hover {
+  background: var(--bg-alt);
+}

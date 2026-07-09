@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-titulo {
+  margin: 0;
+}
+
+.header-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-ativo,
+.nav-inativo {
+  border-radius: 6px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 500;
+}
+
+.nav-ativo {
+  color: #fff;
+  background: var(--accent);
+}
+
+.nav-inativo {
+  color: var(--text);
+  background: transparent;
+  border-color: var(--border);
+}
+
+.nav-inativo:hover {
+  background: var(--bg-alt);
+}

@@ -2,8 +2,10 @@
 
 <img src="https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge" alt="Version" />
 <img src="https://img.shields.io/badge/backend-conclu%C3%ADdo-brightgreen?style=for-the-badge" alt="Backend Status" />
-<img src="https://img.shields.io/badge/frontend-em%20desenvolvimento-yellow?style=for-the-badge" alt="Frontend Status" />
+<img src="https://img.shields.io/badge/frontend-conclu%C3%ADdo-brightgreen?style=for-the-badge" alt="Frontend Status" />
 <img src="https://img.shields.io/badge/.NET-10-512BD4?style=for-the-badge&logo=dotnet" alt=".NET" />
+<img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+<img src="https://img.shields.io/badge/TypeScript-blue?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
 
 <br/><br/>
 
@@ -15,7 +17,7 @@ Desafio técnico de back-end/front-end: uma API que permite cadastrar pessoas de
 
 <br/>
 
-[💡 Sobre](#-sobre-o-projeto) · [✨ Funcionalidades](#-funcionalidades) · [📐 Regras de Negócio](#-regras-de-negócio) · [🛠 Stack](#-stack-tecnológica) · [▶️ Como Rodar](#️-como-rodar-o-back-end) · [🔌 Endpoints](#-endpoints-da-api)
+[💡 Sobre](#-sobre-o-projeto) · [✨ Funcionalidades](#-funcionalidades) · [📐 Regras de Negócio](#-regras-de-negócio) · [🛠 Stack](#-stack-tecnológica) · [▶️ Como Rodar](#️-como-rodar-o-back-end) · [🔌 Endpoints](#-endpoints-da-api) · [🖥️ Front-end](#️-front-end)
 
 </div>
 
@@ -27,9 +29,12 @@ Desafio técnico de back-end/front-end: uma API que permite cadastrar pessoas de
 - [Funcionalidades](#-funcionalidades)
 - [Regras de Negócio](#-regras-de-negócio)
 - [Stack Tecnológica](#-stack-tecnológica)
-- [Estrutura de Pastas](#-estrutura-de-pastas-back-end)
+- [Estrutura de Pastas (Back-end)](#-estrutura-de-pastas-back-end)
 - [Como Rodar o Back-end](#️-como-rodar-o-back-end)
 - [Endpoints da API](#-endpoints-da-api)
+- [Front-end](#️-front-end)
+  - [Estrutura de Pastas (Front-end)](#-estrutura-de-pastas-front-end)
+  - [Como Rodar o Front-end](#️-como-rodar-o-front-end)
 
 ---
 
@@ -79,7 +84,8 @@ O back-end é uma API REST em **.NET / C#**, com persistência em **SQLite** (os
 | **ORM** | Entity Framework Core |
 | **Banco de Dados** | SQLite (arquivo local `gastos.db`, persistente) |
 | **Documentação da API** | Swagger / Swashbuckle |
-| **Front-end** | React + TypeScript *(em desenvolvimento)* |
+| **Front-end** | React 19 · TypeScript · Vite |
+| **Lint (front-end)** | ESLint |
 
 ---
 
@@ -135,7 +141,7 @@ Now listening on: http://localhost:5053
 
 Com o servidor rodando, abra `http://localhost:5053/swagger` (troque a porta pela que aparecer no seu terminal) para testar todos os endpoints interativamente pelo navegador.
 
-> **Nota para desenvolvimento:** o banco é criado via `EnsureCreated()` (sem migrations, por simplicidade). Se você alterar alguma classe em `Models/`, apague o arquivo `gastos.db` antes de rodar de novo, para que o banco seja recriado com o schema atualizado.
+> **Nota para desenvolvimento:** o banco é criado via `EnsureCreated()`. Se alterar alguma classe em `Models/`, apague o arquivo `gastos.db` antes de rodar de novo, para que o banco seja recriado com o schema atualizado.
 
 ---
 
@@ -228,6 +234,62 @@ Se a pessoa informada for menor de 18 anos e o tipo for `0` (Receita), a API ret
 }
 ```
 </details>
+
+---
+
+## 🖥️ Front-end
+
+Aplicação React + TypeScript que consome a API acima. Três telas, navegáveis por uma barra no topo: **Pessoas**, **Transações** e **Totais**. Usa `fetch` nativo do navegador (sem axios) e sempre exibe a mensagem de erro real devolvida pelo back-end, em vez de textos genéricos.
+
+### 📂 Estrutura de Pastas (Front-end)
+
+```
+frontend/
+└── DesafioTecnicoFront/
+    └── src/
+        ├── main.tsx                    # entry point: monta <App /> no DOM
+        ├── App.tsx                     # controla qual tela está ativa
+        ├── App.css
+        ├── index.css                   # estilos globais e variáveis de cor (tema claro/escuro)
+        ├── components/
+        │   ├── Header.tsx              # barra de navegação entre as 3 telas
+        │   └── Header.css
+        ├── pages/
+        │   ├── PessoasPage.tsx         # formulário + lista + exclusão
+        │   ├── TransacoesPage.tsx      # formulário + lista
+        │   ├── TotaisPage.tsx          # tabela de totais por pessoa + total geral
+        │   └── *.css
+        ├── api/
+        │   ├── config.ts               # URL base do back-end
+        │   ├── httpError.ts            # extrai mensagem de erro das respostas da API
+        │   ├── pessoasApi.ts
+        │   ├── transacoesApi.ts
+        │   └── totaisApi.ts
+        ├── types/
+        │   ├── Pessoa.ts / Transacao.ts / Totais.ts
+        │   └── Pagina.ts               # as 3 telas possíveis, usado pela navegação
+        └── utils/
+            ├── mensagemDoErro.ts
+            ├── formatarMoeda.ts
+            └── converterValorParaNumero.ts # aceita "150,50" (vírgula) além de "150.50"
+```
+
+### ▶️ Como Rodar o Front-end
+
+#### Pré-requisitos
+- [Node.js](https://nodejs.org) (versão LTS)
+
+#### Passo a passo
+
+```bash
+cd frontend/DesafioTecnicoFront
+npm install
+npm run dev
+```
+
+O terminal vai mostrar a URL local, geralmente `http://localhost:5173`.
+
+> **Importante:** o front-end só funciona com o back-end rodando ao mesmo tempo (veja [Como Rodar o Back-end](#️-como-rodar-o-back-end)). Se o back-end estiver numa porta diferente de `5053`, ajuste a constante `API_BASE_URL` em `src/api/config.ts`.
 
 ---
 
